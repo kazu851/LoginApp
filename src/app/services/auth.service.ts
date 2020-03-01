@@ -25,6 +25,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('name');
   }
 
   login( usuario: UsuarioModel) {
@@ -42,7 +43,9 @@ export class AuthService {
       map( resp => {
         console.log('Entró en el mapa del Rxjs');
         // tslint:disable-next-line:no-string-literal
-        this.guardarToken( resp['idToken']);
+        console.log(resp);
+        // tslint:disable-next-line:no-string-literal
+        this.guardarToken( resp['idToken'] , resp['displayName']);
         return resp;
       })
     );
@@ -64,18 +67,18 @@ export class AuthService {
       map( resp => {
         console.log('Entró en el mapa del Rxjs');
         // tslint:disable-next-line:no-string-literal
-        this.guardarToken( resp['idToken']);
+        this.guardarToken( resp['idToken'] , resp['displayName']);
         return resp;
       })
     );
 
   }
 
-  private guardarToken( idToken: string ) {
+  private guardarToken( idToken: string, displayName: string ) {
 
     this.userToken = idToken;
     localStorage.setItem('token', idToken);
-
+    localStorage.setItem('name', displayName);
     const hoy = new Date();
     hoy.setSeconds( 3600 );
 
@@ -110,6 +113,10 @@ export class AuthService {
     }
 
     return this.userToken.length > 2;
+
+  }
+
+  editarDatosUsuario() {
 
   }
 

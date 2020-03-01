@@ -9,14 +9,21 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  displayName: string;
   constructor( private auth: AuthService, private router: Router ) { }
 
   ngOnInit() {
+    this.displayName = localStorage.getItem('name');
+    console.log(this.displayName);
   }
 
   salir() {
     this.auth.logout();
     this.router.navigateByUrl('/login');
+  }
+
+  verPerfil() {
+    this.router.navigateByUrl('/perfil-usuario');
   }
 
 }

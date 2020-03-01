@@ -1,12 +1,18 @@
 <div class="m-5">
   <div class="row">
     <div class="col-xl-10">
-      <h1>Bienvenido a mi pagina</h1>
+      <h3>Bienvenido a mi pagina {{displayName}}</h3>
     </div>
-    <div class="col-xl-2" style="text-align: center;">
+    <div class="col-xl-1" style="text-align: center;">
+      <button class="btn btn-outline-primary"
+          (click)="verPerfil()">
+        Perfil
+      </button>
+    </div>  
+    <div class="col-xl-1" style="text-align: center;">
       <button class="btn btn-outline-danger"
           (click)="salir()">
-        LogOut
+        Salir
       </button>
     </div>
   </div>
