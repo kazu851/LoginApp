@@ -13,13 +13,14 @@ import { Router } from '@angular/router';
 export class RegistroComponent implements OnInit {
 
   usuario: UsuarioModel;
+  recordarme =  false;
 
   constructor( private auth: AuthService, private router: Router ) { }
 
   ngOnInit() {
     this.usuario = new UsuarioModel();
 
-    this.usuario.email = 'jean_cochrane@hotmail.com';
+    // this.usuario.email = 'jean_cochrane@hotmail.com';
    }
 
    onSubmit(form: NgForm) {
@@ -39,6 +40,11 @@ export class RegistroComponent implements OnInit {
 
       console.log(resp);
       Swal.close();
+
+      if (this.recordarme) {
+        localStorage.setItem('email', this.usuario.email);
+      }
+
       this.router.navigateByUrl('/home');
 
     }, (err) => {
