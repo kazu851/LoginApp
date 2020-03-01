@@ -5,10 +5,14 @@
                     #f="ngForm" 
                     class="login100-form validate-form flex-sb flex-w">
     
-                    <span class="login100-form-title p-b-51">
+                    <span class="login100-form-title p-b-20">
                         Crear nueva cuenta
                     </span>
-    
+                    <div class="row" style="width: 100%;">
+                        <div class="col-xl-12" style="text-align: center;">
+                            <img src="https://i.imgur.com/kWFwiS9.gif" alt="pikachu" style="max-height: 120px;">
+                        </div>
+                    </div>
                     <span 
                         *ngIf="f.submitted && f.controls['email'].errors"
                         class="text-danger animated fadeIn">El correo es obligatorio</span>
