@@ -11,6 +11,7 @@ export class PerfilUsuarioComponent implements OnInit {
 
   email: string;
   nombre: string;
+  editable = false;
 
   constructor( private auth: AuthService, private router: Router) { }
 
@@ -32,5 +33,12 @@ export class PerfilUsuarioComponent implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
+  habEdicion() {
+    this.editable = true;
+  }
+
+  cancelarEdicion() {
+    this.editable = false;
+  }
 
 }
