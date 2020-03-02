@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UsuarioModel } from '../models/usuario.model';
+import { UsuarioModel, EditarUsuarioModel } from '../models/usuario.model';
 
 import { map } from 'rxjs/operators';
 
@@ -12,6 +12,7 @@ export class AuthService {
   private url = 'https://identitytoolkit.googleapis.com/v1';
   private apiKey = 'AIzaSyDsBgMMQX9ijiXClRuJ8JCnpZaPThQWEFY';
   userToken: string;
+  displayName: string;
 
   // Crear Nuevo Usuario
   // https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
@@ -116,8 +117,34 @@ export class AuthService {
 
   }
 
-  editarDatosUsuario() {
+  editarDatosUsuario( editUsuario: EditarUsuarioModel) {
+
+    const editData = {
+      idToken: editUsuario.idToken,
+      displayName: editUsuario.displayName,
+      photoUrl: editUsuario.photoUrl,
+      returnSecureToken: true
+    };
+
+    return this.http.post(
+      `${this.url}/accounts:update?key=${this.apiKey}`,
+      editData
+    ).pipe(
+      map( resp => {
+        console.log('Entró en el mapa del Rxjs');
+        // tslint:disable-next-line:no-string-literal
+        this.guardarNombre( resp['displayName']);
+        return resp;
+      })
+    );
+  }
+
+  private guardarNombre( displayName: string ) {
+
+    this.displayName = displayName;
+    localStorage.setItem('name', displayName);
 
   }
+
 
 }

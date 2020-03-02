@@ -3,3 +3,9 @@ export class UsuarioModel {
     password: string;
     nombre: string;
 }
+
+export class EditarUsuarioModel {
+    idToken: string;
+    displayName: string;
+    photoUrl: string;
+}
